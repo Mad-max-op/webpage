@@ -2,7 +2,7 @@ body{
     background-color : rgba(232,251,255,255);
     font-family: Arial, Helvetica, sans-serif;
     font-weight :bold;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .root-container{
@@ -49,6 +49,21 @@ a{
         background-color: rgba(49, 43, 98, 255);
         color: rgba(255, 255, 255, 255);
     }
+}
+
+/* Main page styling */
+
+.subject-root-container{
+    display : flex;
+    width : 60vw;
+    justify-content: flex-end;
+}
+.subject-container{
+    display : flex;
+    flex-direction : column;
+    padding : 0;
+    margin : 0;
+    gap : 1.4em;
 }
 
 /* toggle button styling */
@@ -111,6 +126,10 @@ input:checked + .slider:before {
 
 .present{
     color : green;
+}
+
+label{
+    width : 100px;
 }
 /* about us styling */
 

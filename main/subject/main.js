@@ -1,23 +1,25 @@
 function visit_home()
 {
-    window.location.replace("main.html")
+    window.location.replace("../main.html")
 }
 
 function visit_features()
 {
-    window.location.replace("features.html")
+    window.location.replace("../features.html")
 }
 
 function visit_about_us()
 {
-    window.location.replace("about_us.html")
+    window.location.replace("../about_us.html")
 }
 
-function visit_subject(location)
-{
-    window.location.replace("./subject/" + location + ".html");
-}
-//adding into attendace database
+let current_location = window.location.href;
+current_location = current_location.split("/");
+current_location = current_location[current_location.length - 1];
+current_location = current_location.split(".")[0]
+console.log(current_location);
+
+//marking attendance
 let data_container = document.getElementsByClassName("data-container");
 
 let check_box = document.getElementsByClassName("check-box");
@@ -26,9 +28,9 @@ let absent = document.getElementsByClassName("absent");
 
 function switch_toggle(e)
 {
-    console.log(e);
+    // console.log(e);
     let req_elements = document.getElementsByClassName(e.classList[1]);
-    console.log(req_elements);
+    // cons ole.log(req_elements);
 
     if(e.value == "present")
     {
@@ -43,6 +45,8 @@ function switch_toggle(e)
 };
 
 //data fetching
+data_container = document.getElementsByClassName('data-container');
+// console.log(data_container);
 let dict = [
     {
         usn : "1NH21IS104",
@@ -85,6 +89,7 @@ function fetch_data(usn, name)
     let switch_label = document.createElement('label');
     switch_label.classList.add("switch");
     let check_box = document.createElement('input');
+    check_box.classList.add("check-box");
     check_box.type = "checkbox";
     check_box.value = "present";
     check_box.setAttribute("onclick", "switch_toggle(this)");
@@ -121,3 +126,30 @@ function add_list()
         fetch_data(dict[i].usn, dict[i].name);
     }
 };
+
+add_list();
+
+function post_data()
+{
+    let student_array = document.getElementsByClassName('check-box');
+    let students_present = [];
+    let students_absent = [];
+
+    for(let i =0; i < student_array.length; i++)
+    {
+        let value = student_array[i].value;
+        let usn = student_array[i].classList[1];
+        
+        if(value == "present")
+        {
+            students_present.push(usn);
+        }else{
+            students_absent.push(usn);
+        }
+    }
+
+    console.log("students who are present");
+    console.log(students_present);
+    console.log("students who are absent");
+    console.log(students_absent);
+}
